@@ -98,16 +98,16 @@
   let fadeSlides = [
     new Slide("Hi there. Don't be afraid. I am the universe.", 5000),
     new Slide("You are the only one who found the ultimate answer so far. Congratulations.", 5000),
-    new Slide("In fact, there's no such thing called the ultimate answer to everything. That is a paradox.", 7000),
+    new Slide("In fact, there's no such thing called the ultimate answer to everything. That is a paradox.", 8000),
     new Slide("But as the universe, I do think the closest thing is love :)", 8000),
-    new Slide("When I'm first born, I saw 2 stars collide and explode. Then there's matter, and life.", 7000),
+    new Slide("When I'm first born, I saw 2 stars collide and explode. Then there's matter, and life.", 10000),
     new Slide("Throughout billions of years, I've seen countless problems: some frogs fight each others for bugs, one who killed another for betraying them, fleets of battleships conquers another empire for some noble reasons... ", 15000),
-    new Slide("But it all doesn't matter... Because stars explode. That's just a part of me. As the universe, something in me just goes away after some times. It's totally arbitrary. So, there's not really a 'definite win or lose' in the universe.", 9000),
-    new Slide("But love is something different. It's beyond time. For example, I once saw this bear on your planet who has fall in love with another bear. That bear always takes care of their loved one, hunting salmons, finding shelters, and is always around them whenever the other bear is vulnerable.", 10000),
-    new Slide("After a few years. Some construction companies invaded their forest, and killed them. It is a sad story, but don't worry. The company didn't know that after 1.5 million years, Earth is going to explode as well. Oops, sorry for leaking that information ;)" , 12000),
-    new Slide("But the point is. Although the bears died, their love persisted. Before the bears lost their consciousness, they were in love. And that is not binded to any loss of matters. To the bears, love is always there while they were alive. To me, their love is still somewhere in the galaxy that lives as Echoes that forms gravity. Pulling stars lightyears away toward each other. To fall, to collide, to explode, to create new life. You see? Me, the Universe, is founded on love.", 20000),
-    new Slide("That is why love is the ultimate answer of everything. When you are alive, it encourages you not only to be alive, but to live your life. When you're dead, it stays in your footprints that affects things and life way beyond your imagination.", 12000),
-    new Slide("And that is my ultimate answer to everything. I can't really explain it even as the universe. But like what your Earth Poet Rumi said: 'Love is an astrolabe of God's astrolabes, it's better to feel it than trying to understand it'. Just feel it, and embrace it. And one day, you will find love is the ultimate answer to everything in this world, and out of this world.", 20000),
+    new Slide("But it all doesn't matter... Because stars explode. That's just a part of me. As the universe, something in me just goes away after some times. It's totally arbitrary. So, there's not really a 'definite win or lose' in the universe.", 16000),
+    new Slide("But love is something different. It's beyond time. For example, I once saw this bear on your planet who has fall in love with another bear. That bear always takes care of their loved one, hunting salmons, finding shelters, and is always around them whenever the other bear is vulnerable.", 15000),
+    new Slide("After a few years. Some construction companies invaded their forest, and killed them. It is a sad story, but don't worry. The company didn't know that after 1.5 million years, Earth is going to explode as well. Oops, sorry for leaking that information ;)" , 15000),
+    new Slide("But the point is. Although the bears died, their love persisted. Before the bears lost their consciousness, they were in love. And that is not binded to any loss of matters. To the bears, love is always there while they were alive. To me, their love is still somewhere in the galaxy that lives as Echoes that forms gravity. Pulling stars lightyears away toward each other. To fall, to collide, to explode, to create new life. You see? Me, the Universe, is founded on love.", 27000),
+    new Slide("That is why love is the ultimate answer of everything. When you are alive, it encourages you not only to be alive, but to live your life. When you're dead, it stays in your footprints that affects things and life way beyond your imagination.", 18000),
+    new Slide("And that is my ultimate answer to everything. I can't really explain it even as the universe. But like what your Earth Poet Rumi said: 'Love is an astrolabe of God's astrolabes, it's better to feel it than trying to understand it'. Just feel it, and embrace it. And one day, you will find love is the ultimate answer to everything in this world, and out of this world.", 25000),
     new Slide("Happy birthday~", 5000),
     new Slide("I love you more than anyone and anything in this world, in all worlds, all universes, including the parallel ones. I love you to infinity and beyond.", 9000)
   ];
@@ -119,11 +119,7 @@
 
   // For logo screen
   onMount(() => {
-    if (phase === 0) {
-      setTimeout(() => {
-        phase = 1;
-      }, 6000);
-    }
+    // Remove the automatic timer
     // // Debug key handler
     // const handleDebugKey = (e: KeyboardEvent) => {
     //   if (e.code === 'Space') nextPhase();
@@ -131,13 +127,21 @@
     // window.addEventListener('keydown', handleDebugKey);
     // return () => window.removeEventListener('keydown', handleDebugKey);
   });
+
+  function handleStart() {
+    isStarted = true;
+    // Start the logo countdown after clicking login
+    setTimeout(() => {
+      phase = 1;
+    }, 6000);
+  }
 </script>
 
 <AudioManager currentPhase={phase} {isStarted} bind:this={audioManagerRef} />
 
 {#if !isStarted}
   <div class="start-screen">
-    <button class="start-btn" on:click={() => isStarted = true}>Login</button>
+    <button class="start-btn" on:click={handleStart}>Login</button>
   </div>
 {:else}
   {#if phase === 0}
